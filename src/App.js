@@ -1,5 +1,6 @@
 import React from 'react';
-import './App.css';
+import './App.css'
+import Radium, {StyleRoot} from 'radium'
 import Person from './Person/Person'
 
 class App extends React.Component{
@@ -13,8 +14,10 @@ class App extends React.Component{
   }
 
   handleShowItem = () =>{
+    const currentState = this.state.showPerson
+    console.log(currentState)
     this.setState({
-      showPerson:!this.state.showPerson
+      showPerson:!currentState
     })
   }
 
@@ -38,11 +41,16 @@ class App extends React.Component{
 
   render(){
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover':{
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     }
 
     const {person} = this.state
@@ -52,24 +60,41 @@ class App extends React.Component{
     if(showPerson){
       listOfPerson = person.map((item,index) => (
         <Person 
-        key={item.id} 
-        name={item.name} 
-        age={item.age} 
-        delete={this.handleDeletePerson.bind(this,index)} 
-        changed = {(event)=>this.handleNameChange(event,item.id)}
+          key={item.id} 
+          name={item.name} 
+          age={item.age} 
+          delete={this.handleDeletePerson.bind(this,index)} 
+          changed = {(event)=>this.handleNameChange(event,item.id)}
         />
       ))
+      style.backgroundColor = 'red'
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+          color: 'black'
+      }
     }
 
 
+    let classes = []
+    if(this.state.person.length<=2){
+        classes.push('red')
+    }
+    if (this.state.person.length <= 1) {
+      classes.push('bold')
+    }
+
+    classes = classes.join(' ');
+
     return (
-      <div className="App">
-        <h1>Hi there, I am a react App</h1>
-        <button style={style} onClick={this.handleShowItem}>{showPerson?'Remove':'show'}</button>
-        {listOfPerson}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1 className={classes}>Hi there, I am a react App</h1>
+          <button style={style} onClick={this.handleShowItem}>{showPerson?'Remove':'show'}</button>
+          {listOfPerson}
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
