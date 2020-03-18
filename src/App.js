@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css'
-import Radium, {StyleRoot} from 'radium'
 import Person from './Person/Person'
 
 class App extends React.Component{
@@ -15,7 +14,6 @@ class App extends React.Component{
 
   handleShowItem = () =>{
     const currentState = this.state.showPerson
-    console.log(currentState)
     this.setState({
       showPerson:!currentState
     })
@@ -46,11 +44,7 @@ class App extends React.Component{
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer',
-      ':hover':{
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
+      cursor: 'pointer'
     }
 
     const {person} = this.state
@@ -67,12 +61,7 @@ class App extends React.Component{
           changed = {(event)=>this.handleNameChange(event,item.id)}
         />
       ))
-      style.backgroundColor = 'red'
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-          color: 'black'
-      }
-    }
+      style.backgroundColor = 'red'    }
 
 
     let classes = []
@@ -86,15 +75,13 @@ class App extends React.Component{
     classes = classes.join(' ');
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1 className={classes}>Hi there, I am a react App</h1>
-          <button style={style} onClick={this.handleShowItem}>{showPerson?'Remove':'show'}</button>
-          {listOfPerson}
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <h1 className={classes}>Hi there, I am a react App</h1>
+        <button style={style} onClick={this.handleShowItem}>{showPerson?'Remove':'show'}</button>
+        {listOfPerson}
+      </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;
