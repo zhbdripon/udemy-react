@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css'
-import Person from './Person/Person'
+import Persons from '../components/Persons/Persons'
+import Cockpit from '../components/Cockpit/Cockpit'
 
 class App extends React.Component{
   state = {
@@ -38,46 +39,25 @@ class App extends React.Component{
   }
 
   render(){
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
 
     const {person} = this.state
     const {showPerson} = this.state
     let listOfPerson = null
 
     if(showPerson){
-      listOfPerson = person.map((item,index) => (
-        <Person 
-          key={item.id} 
-          name={item.name} 
-          age={item.age} 
-          delete={this.handleDeletePerson.bind(this,index)} 
-          changed = {(event)=>this.handleNameChange(event,item.id)}
-        />
-      ))
-      style.backgroundColor = 'red'    }
-
-
-    let classes = []
-    if(this.state.person.length<=2){
-        classes.push('red')
+      listOfPerson = <Persons 
+          person={person} 
+          changed={this.handleNameChange} 
+          delete={this.handleDeletePerson}/>
     }
-    if (this.state.person.length <= 1) {
-      classes.push('bold')
-    }
-
-    classes = classes.join(' ');
 
     return (
       <div className="App">
-        <h1 className={classes}>Hi there, I am a react App</h1>
-        <button style={style} onClick={this.handleShowItem}>{showPerson?'Remove':'show'}</button>
+        <Cockpit 
+          persons={this.state.person} 
+          toggle={this.handleShowItem} 
+          show={this.state.showPerson}
+        />
         {listOfPerson}
       </div>
     );
