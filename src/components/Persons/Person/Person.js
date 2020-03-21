@@ -18,4 +18,4 @@ const Person = (props) =>{
     )
 }
 
-export default withClass(Person,"person");
+export default withClass(Person,"Person");
