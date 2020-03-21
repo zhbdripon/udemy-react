@@ -1,22 +1,21 @@
 import React from 'react'
 import './Person.css'
+import Aux from '../../../hoc/Aux'
+import withClass from '../../../hoc/withClass'
 
 const Person = (props) =>{
     return (
-        <div className="Person">
+        <Aux>
             <div>
-                <div>
-                    <p>Name : {props.name}</p>
-                    <p>Age: {props.age}</p>
-                    <input type="text" onChange={props.changed} value={props.name}/>
-                </div>
-                <div>
-                    <button onClick={props.delete}>Delete</button>
-                </div>
+                <p>Name : {props.name}</p>
+                <p>Age: {props.age}</p>
+                <input type="text" onChange={props.changed} value={props.name}/>
             </div>
-            
-        </div>
+            <div>
+                <button onClick={props.delete}>Delete</button>
+            </div>
+        </Aux>
     )
 }
 
-export default Person;
+export default withClass(Person,"person");

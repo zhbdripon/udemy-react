@@ -1,9 +1,6 @@
 import React from 'react';
 import './Cockpit.css'
-<<<<<<< HEAD
 import Aux from '../../hoc/Aux'
-=======
->>>>>>> 175f86e223ebeeec75abf87cab34e4a84fb09a38
 
 const Cockpit = (props) =>{
 
@@ -29,17 +26,10 @@ const Cockpit = (props) =>{
      classes = classes.join(' ');
 
      return (
-<<<<<<< HEAD
          <Aux>
                <h1 className={classes}>Hi there, I am a react App</h1>
                <button style={style} onClick={props.toggle} >{props.show?'Remove':'Show'}</button>
          </Aux>
-=======
-         <div>
-               <h1 className={classes}>Hi there, I am a react App</h1>
-               <button style={style} onClick={props.toggle} >{props.show?'Remove':'Show'}</button>
-         </div>
->>>>>>> 175f86e223ebeeec75abf87cab34e4a84fb09a38
      )
 }
 
