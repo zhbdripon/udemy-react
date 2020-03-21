@@ -5,13 +5,23 @@ import withClass from '../../../hoc/withClass'
 import PropTypes from 'prop-types'
 
 class Person extends Component{
+
+    componentDidMount(){
+        this.inputNode.focus()
+    }
+
     render(){
         return (
             <Aux>
                 <div>
                     <p>Name : {this.props.name}</p>
                     <p>Age: {this.props.age}</p>
-                    <input type="text" onChange={this.props.changed} value={this.props.name}/>
+                    <input 
+                        type="text" 
+                        onChange={this.props.changed} 
+                        value={this.props.name}
+                        ref={(node)=>{this.inputNode = node}}
+                    />
                 </div>
                 <div>
                     <button onClick={this.props.delete}>Delete</button>
