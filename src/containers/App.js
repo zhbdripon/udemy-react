@@ -17,8 +17,11 @@ class App extends React.Component{
 
   handleShowItem = () =>{
     const currentState = this.state.showPerson
-    this.setState({
-      showPerson:!currentState
+    this.setState((prevState)=>{
+      return {
+        showPerson: !prevState.showPerson
+      }
+      
     })
   }
 
