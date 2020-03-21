@@ -1,5 +1,6 @@
 import React from 'react';
 import './Cockpit.css'
+import Aux from '../../hoc/Aux'
 
 const Cockpit = (props) =>{
 
@@ -25,10 +26,10 @@ const Cockpit = (props) =>{
      classes = classes.join(' ');
 
      return (
-         <div>
+         <Aux>
                <h1 className={classes}>Hi there, I am a react App</h1>
                <button style={style} onClick={props.toggle} >{props.show?'Remove':'Show'}</button>
-         </div>
+         </Aux>
      )
 }
 
