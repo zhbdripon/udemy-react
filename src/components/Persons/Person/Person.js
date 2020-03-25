@@ -6,8 +6,17 @@ import PropTypes from 'prop-types'
 
 class Person extends Component{
 
-    componentDidMount(){
-        this.inputNode.focus()
+    constructor(props){
+        super(props)
+        this.inputRef = React.createRef()
+    }
+
+    // componentDidMount(){
+    //     this.inputRef.current.focus()
+    // }
+
+    focusFromParentComponent(){
+        this.inputRef.current.focus()
     }
 
     render(){
@@ -20,7 +29,7 @@ class Person extends Component{
                         type="text" 
                         onChange={this.props.changed} 
                         value={this.props.name}
-                        ref={(node)=>{this.inputNode = node}}
+                        ref={this.inputRef}
                     />
                 </div>
                 <div>
